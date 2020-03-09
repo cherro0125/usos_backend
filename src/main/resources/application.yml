@@ -1,0 +1,13 @@
+server:
+  port: 2137
+
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/usos
+#    data-username: root
+#    password: root
+#    driver-class-name: com.mysql.jdbc.Driver
+
