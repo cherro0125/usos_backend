@@ -1,7 +1,9 @@
-# USOS
+# USOS Backend
 
 
-###Temat projektu: USOS ###
+Temat projektu: 
+----
+USOS 
 
 
 
