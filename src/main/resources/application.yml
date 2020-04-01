@@ -1,0 +1,17 @@
+server:
+  port: 2137
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/usos
+    password: root
+    username: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+
+
