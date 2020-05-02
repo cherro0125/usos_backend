@@ -18,7 +18,7 @@ spring:
 usos:
   app:
     jwtSecret: meowmeowlittlesecret
-    expirationTime: 864_000_000
+    expirationTime: 3600000
 
 
 
