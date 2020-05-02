@@ -1,4 +1,4 @@
-package dto.user;
+package org.fibi.usos.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

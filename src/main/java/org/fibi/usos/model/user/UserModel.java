@@ -1,6 +1,6 @@
 package org.fibi.usos.model.user;
 
-import dto.user.UserDto;
+import org.fibi.usos.dto.user.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
