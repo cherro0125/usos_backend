@@ -1,5 +1,6 @@
 package org.fibi.usos.listener.seeder;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 import org.fibi.usos.model.user.UserModel;
 import org.fibi.usos.model.user.UserRole;
@@ -51,7 +52,7 @@ public class UserSeeder implements Seeder {
     }
 
     public void createOrUpdateWrapper(UserModel user){
-        user = userService.createOrUpdate(user);
-        logger.info("Create user " + user);
+        Optional<UserModel> createdUser = userService.createOrUpdate(user);
+        createdUser.ifPresent(userModel -> logger.info("Create user " + userModel));
     }
 }

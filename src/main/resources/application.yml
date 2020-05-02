@@ -1,5 +1,8 @@
 server:
   port: 2137
+  servlet:
+    context-path: /api
+
 
 spring:
   jpa:
@@ -11,6 +14,11 @@ spring:
     password: root
     username: root
     driver-class-name: com.mysql.jdbc.Driver
+
+usos:
+  app:
+    jwtSecret: meowmeowlittlesecret
+    expirationTime: 864_000_000
 
 
 

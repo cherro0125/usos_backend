@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "usos.app.jwtSecret",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.jwtSecret."
+    },
+    {
+      "name": "usos.app.expirationTime",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.expirationTime."
+    }
+  ] }

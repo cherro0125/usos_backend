@@ -10,6 +10,8 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class TestListener {
 
@@ -29,17 +31,19 @@ public class TestListener {
         user1.setPasswordHash("eee");
         user1.setUsername("user1");
         user1.setRole(UserRole.RECTOR);
-        user1 = userService.createOrUpdate(user1);
+        Optional<UserModel> usr1 = userService.createOrUpdate(user1);
 
         UserModel user2 = new UserModel();
         user2.setPasswordHash("bbb");
         user2.setUsername("user1");
         user2.setRole(UserRole.STUDENT);
-        user2 = userService.createOrUpdate(user2);
-        ScholarshipRequestDocumentModel requestModel = new ScholarshipRequestDocumentModel();
-        requestModel.setApprover(user1);
-        requestModel.setApplicant(user2);
-        scholarshipRequestDocumentRepository.save(requestModel);
+        Optional<UserModel> usr2 = userService.createOrUpdate(user2);
+        if(usr1.isPresent() && usr2.isPresent()){
+            ScholarshipRequestDocumentModel requestModel = new ScholarshipRequestDocumentModel();
+            requestModel.setApprover(usr1.get());
+            requestModel.setApplicant(usr2.get());
+            scholarshipRequestDocumentRepository.save(requestModel);
+        }
 
     }
 }
