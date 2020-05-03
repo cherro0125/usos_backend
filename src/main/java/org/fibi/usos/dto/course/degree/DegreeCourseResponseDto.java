@@ -1,4 +1,4 @@
-package org.fibi.usos.controller.course.degree;
+package org.fibi.usos.dto.course.degree;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

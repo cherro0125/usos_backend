@@ -3,9 +3,8 @@ package org.fibi.usos.dto.course;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.fibi.usos.controller.course.degree.DegreeCourseResponseDto;
+import org.fibi.usos.dto.course.degree.DegreeCourseResponseDto;
 import org.fibi.usos.model.course.CourseType;
-import org.fibi.usos.model.degree.DegreeCourseModel;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

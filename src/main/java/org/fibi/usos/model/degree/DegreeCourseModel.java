@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.fibi.usos.controller.course.degree.DegreeCourseResponseDto;
+import org.fibi.usos.dto.course.degree.DegreeCourseResponseDto;
 import org.fibi.usos.model.base.BaseIdentityModel;
 import org.fibi.usos.model.course.CourseModel;
 
