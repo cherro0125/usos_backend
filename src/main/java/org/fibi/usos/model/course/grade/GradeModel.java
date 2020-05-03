@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.fibi.usos.dto.course.grade.GradeDto;
 import org.fibi.usos.model.base.BaseIdentityModel;
 import org.fibi.usos.model.course.group.CourseGroupModel;
 import org.fibi.usos.model.exam.ExamDateType;
@@ -32,4 +33,14 @@ public class GradeModel extends BaseIdentityModel {
     private UserModel assignedUser;
     @ManyToOne
     private UserModel createdBy;
+
+    public GradeDto MapToDto() {
+        GradeDto dto = new GradeDto();
+        dto.setDescription(getDescription());
+        dto.setValue(getValue());
+        dto.setExamDateType(getExamDateType());
+        dto.setCourseGroup(getCourseGroup());
+        //dto.setAssignedUser(getAssignedUser());
+
+    }
 }
