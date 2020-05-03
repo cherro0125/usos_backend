@@ -1,4 +1,4 @@
-package org.fibi.usos.repository.grade;
+package org.fibi.usos.repository.course.grade;
 
 import com.sun.xml.bind.v2.model.core.ID;
 import org.fibi.usos.model.course.grade.GradeModel;

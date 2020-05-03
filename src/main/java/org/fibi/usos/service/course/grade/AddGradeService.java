@@ -2,7 +2,7 @@ package org.fibi.usos.service.course.grade;
 
 import org.fibi.usos.model.base.BaseIdentityModel;
 import org.fibi.usos.model.course.grade.GradeModel;
-import org.fibi.usos.repository.grade.GradeRepository;
+import org.fibi.usos.repository.course.grade.GradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

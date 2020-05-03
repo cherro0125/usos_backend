@@ -1,5 +1,6 @@
 package org.fibi.usos.service.course.group;
 
+import org.fibi.usos.model.course.CourseModel;
 import org.fibi.usos.model.course.group.CourseGroupModel;
 import org.fibi.usos.repository.course.group.CourseGroupRepository;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,10 @@ public class CourseGroupStandardService implements CourseGroupService {
     @Override
     public Optional<Collection<CourseGroupModel>> getAllByLeaderId(long leaderId) {
         return courseGroupRepository.getAllByLeaderId(leaderId);
+    }
+
+    @Override
+    public Optional<CourseGroupModel> findByName(String name) {
+        return courseGroupRepository.findByName(name);
     }
 }
