@@ -61,7 +61,7 @@ public class UserModel extends BaseIdentityModel implements UserDetails {
         return true;
     }
 
-    public UserDto MapToDto(){
+    public UserDto mapToDto(){
         UserDto dto = new UserDto();
         dto.setId(getId());
         dto.setRole(getRole());

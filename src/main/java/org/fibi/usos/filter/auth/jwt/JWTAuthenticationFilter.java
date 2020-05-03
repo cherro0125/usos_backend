@@ -10,7 +10,6 @@ import org.fibi.usos.dto.Auth.AuthLoginResponseDto;
 import org.fibi.usos.exception.auth.BadAuthRequestException;
 import org.fibi.usos.model.user.UserModel;
 import org.fibi.usos.strategy.exlcusion.JsonIgnoreExclusionStrategy;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -75,7 +74,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         AuthLoginResponseDto dto = new AuthLoginResponseDto();
-        dto.setUser(user.MapToDto());
+        dto.setUser(user.mapToDto());
         dto.setToken(token);
         out.print(gson.toJson(dto));
         out.flush();

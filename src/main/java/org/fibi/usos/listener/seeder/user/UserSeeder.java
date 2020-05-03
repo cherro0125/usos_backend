@@ -1,13 +1,13 @@
-package org.fibi.usos.listener.seeder;
+package org.fibi.usos.listener.seeder.user;
 
 import java.util.Optional;
 import java.util.logging.Logger;
+
+import org.fibi.usos.listener.seeder.Seeder;
 import org.fibi.usos.model.user.UserModel;
 import org.fibi.usos.model.user.UserRole;
 import org.fibi.usos.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +44,7 @@ public class UserSeeder implements Seeder {
         users.add(dean);
     }
 
-    @EventListener(ApplicationReadyEvent.class)
+
     @Override
     public void seed() {
         init();
