@@ -14,6 +14,8 @@ import javax.persistence.Enumerated;
 public class UserDto {
     private long id;
     private String username;
+    private String firstName;
+    private String lastName;
     @Enumerated(EnumType.STRING)
     private UserRole role;
 

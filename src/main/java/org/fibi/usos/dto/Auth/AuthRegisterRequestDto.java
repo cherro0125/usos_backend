@@ -20,4 +20,6 @@ public class AuthRegisterRequestDto {
     @NotNull(message = "Please provide user role.")
     @Enumerated(EnumType.STRING)
     private UserRole role;
+    private String firstName;
+    private String lastName;
 }

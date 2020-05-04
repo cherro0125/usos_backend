@@ -31,16 +31,16 @@ public class UserSeeder implements Seeder {
     @Override
     public void init() {
         //STUDENT
-        UserModel student = new UserModel("student",passwordEncoder.encode("student"), UserRole.STUDENT);
+        UserModel student = new UserModel("student","Jan","Kowalski",passwordEncoder.encode("student"), UserRole.STUDENT);
         users.add(student);
         //RECTOR
-        UserModel rector = new UserModel("rector",passwordEncoder.encode("rector"), UserRole.RECTOR);
+        UserModel rector = new UserModel("rector","Wiesław","Monciwoda",passwordEncoder.encode("rector"), UserRole.RECTOR);
         users.add(rector);
         //LECTURER
-        UserModel lecturer = new UserModel("lecturer",passwordEncoder.encode("lecturer"), UserRole.LECTURER);
+        UserModel lecturer = new UserModel("lecturer","Tomasz","Neural",passwordEncoder.encode("lecturer"), UserRole.LECTURER);
         users.add(lecturer);
         //DEAN
-        UserModel dean = new UserModel("dean",passwordEncoder.encode("dean"), UserRole.DEAN);
+        UserModel dean = new UserModel("dean","Janusz","Dziekan",passwordEncoder.encode("dean"), UserRole.DEAN);
         users.add(dean);
     }
 

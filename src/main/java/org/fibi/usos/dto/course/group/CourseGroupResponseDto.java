@@ -16,6 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CourseGroupResponseDto {
+    private Long id;
     private String name;
     private UserDto leader;
     private Set<UserDto> students;

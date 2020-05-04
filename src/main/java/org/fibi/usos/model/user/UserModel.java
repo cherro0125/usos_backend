@@ -25,6 +25,8 @@ import java.util.Collection;
 public class UserModel extends BaseIdentityModel implements UserDetails {
     @Column(unique = true,nullable = false)
     private String username;
+    private String firstName;
+    private String lastName;
     @JsonIgnore
     @Column(nullable = false)
     private String passwordHash;
@@ -66,6 +68,8 @@ public class UserModel extends BaseIdentityModel implements UserDetails {
         dto.setId(getId());
         dto.setRole(getRole());
         dto.setUsername(getUsername());
+        dto.setFirstName(getFirstName());
+        dto.setLastName(getLastName());
         return dto;
     }
 }

@@ -36,6 +36,7 @@ public class CourseGroupModel extends BaseIdentityModel {
 
     public CourseGroupResponseDto mapToResponseDto(){
         CourseGroupResponseDto responseDto = new CourseGroupResponseDto();
+        responseDto.setId(getId());
         responseDto.setCourse(course.mapToResponseDto());
         responseDto.setCourseType(courseType);
         responseDto.setLeader(leader.mapToDto());

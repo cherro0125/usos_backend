@@ -41,6 +41,7 @@ public class CourseModel extends BaseIdentityModel {
 
     public CourseResponseDto mapToResponseDto(){
         CourseResponseDto responseDto = new CourseResponseDto();
+        responseDto.setId(getId());
         responseDto.setName(name);
         responseDto.setDescription(description);
         responseDto.setEctsPoints(ectsPoints);
