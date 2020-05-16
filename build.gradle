@@ -42,10 +42,14 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation 'org.springframework.security:spring-security-test'
+    compile group: 'org.mockito', name: 'mockito-core', version: '2.13.0'
+
+    testCompile "org.junit.jupiter:junit-jupiter-api:5.2.0"
+    testCompile "org.junit.jupiter:junit-jupiter-params:5.2.0"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+
 }
 
 test {
