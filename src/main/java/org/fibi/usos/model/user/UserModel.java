@@ -7,11 +7,15 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import net.minidev.json.annotate.JsonIgnore;
 import org.fibi.usos.model.base.BaseIdentityModel;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,7 +39,9 @@ public class UserModel extends BaseIdentityModel implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Collection<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
+        simpleGrantedAuthorities.add(new SimpleGrantedAuthority(role.toString()));
+        return simpleGrantedAuthorities;
     }
 
     @Override
