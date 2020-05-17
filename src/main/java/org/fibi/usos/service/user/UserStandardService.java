@@ -1,12 +1,14 @@
 package org.fibi.usos.service.user;
 
 import org.fibi.usos.model.user.UserModel;
+import org.fibi.usos.model.user.UserRole;
 import org.fibi.usos.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -38,6 +40,30 @@ public class UserStandardService implements UserService {
     @Override
     public Optional<UserModel> findByUsername(String username) {
         return userRepository.findUserModelByUsername(username);
+    }
+
+    @Override
+    public Optional<UserModel> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Collection<UserModel>> findAllByRole(UserRole role) {
+        return userRepository.findAllByRole(role);
+    }
+
+    @Override
+    public Iterable<UserModel> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public boolean remove(Long id) {
+        if(userRepository.findById(id).isPresent()){
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override

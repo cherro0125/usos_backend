@@ -58,11 +58,11 @@ public class GradeStandardService implements GradeService{
 
     @Override
     public Optional<Collection<GradeModel>> findGradesByAssignedUserId(Long assignedUserId) {
-        return gradeRepository.findGradeModelByAssignedUserId(assignedUserId);
+        return gradeRepository.findAllByAssignedUserId(assignedUserId);
     }
 
     @Override
     public Optional<Collection<GradeModel>> findGradesByCreatedByUserId(Long createdByUserId) {
-        return gradeRepository.findGradeModelByCreatedById(createdByUserId);
+        return gradeRepository.findAllByCreatedById(createdByUserId);
     }
 }

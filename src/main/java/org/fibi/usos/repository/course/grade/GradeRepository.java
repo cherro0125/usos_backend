@@ -14,6 +14,6 @@ import java.util.Optional;
 public interface GradeRepository extends CrudRepository<GradeModel, ID> {
     Optional<GradeModel> findGradeModelById(Long id);
     Optional<GradeModel> findGradeModelByCourseGroupIdAndAssignedUserIdAndExamDateType(Long courseGroupId, Long assignedUserId, ExamDateType examDateType);
-    Optional<Collection<GradeModel>> findGradeModelByAssignedUserId(Long assignedUserId);
-    Optional<Collection<GradeModel>> findGradeModelByCreatedById(Long createdByUserId);
+    Optional<Collection<GradeModel>> findAllByAssignedUserId(Long assignedUserId);
+    Optional<Collection<GradeModel>> findAllByCreatedById(Long createdByUserId);
 }
