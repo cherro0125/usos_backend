@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Role;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -38,5 +38,23 @@ public class GradeController {
             res = model.get().MapToDto();
         }
         return ResponseEntity.ok(res);
+    }
+
+    @RequireRole({UserRole.STUDENT})
+    @GetMapping("/student/{id}")
+    public ResponseEntity<Collection<GradeDto>> getGradeByAssignedUserId(@PathVariable(name = "id")Long assignedUserId){
+        List<GradeDto> responseDtos = new LinkedList<>();
+        Optional<Collection<GradeModel>> models = gradeService.findGradesByAssignedUserId(assignedUserId);
+        models.ifPresent( model -> model.forEach(m -> responseDtos.add(m.MapToDto())));
+        return ResponseEntity.ok(responseDtos);
+    }
+
+    @RequireRole({UserRole.DEAN,UserRole.LECTURER,UserRole.RECTOR})
+    @GetMapping("/lecturer/{id}")
+    public ResponseEntity<Collection<GradeDto>> getGradeByLecturerUserId(@PathVariable(name = "id")Long lecturerUserId){
+        List<GradeDto> responseDtos = new LinkedList<>();
+        Optional<Collection<GradeModel>> models = gradeService.findGradesByCreatedByUserId(lecturerUserId);
+        models.ifPresent( model -> model.forEach(m -> responseDtos.add(m.MapToDto())));
+        return ResponseEntity.ok(responseDtos);
     }
 }

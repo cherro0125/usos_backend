@@ -9,6 +9,7 @@ import org.fibi.usos.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -48,8 +49,20 @@ public class GradeStandardService implements GradeService{
         }));
     }
 
+
+
     @Override
-    public Optional<GradeModel> findStudentById(Long id) {
+    public Optional<GradeModel> findGradeById(Long id) {
         return gradeRepository.findGradeModelById(id);
+    }
+
+    @Override
+    public Optional<Collection<GradeModel>> findGradesByAssignedUserId(Long assignedUserId) {
+        return gradeRepository.findGradeModelByAssignedUserId(assignedUserId);
+    }
+
+    @Override
+    public Optional<Collection<GradeModel>> findGradesByCreatedByUserId(Long createdByUserId) {
+        return gradeRepository.findGradeModelByCreatedById(createdByUserId);
     }
 }
