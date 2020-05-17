@@ -3,22 +3,21 @@ package org.fibi.usos.config.auth;
 import org.fibi.usos.constant.auth.SecurityConstants;
 import org.fibi.usos.filter.auth.jwt.JWTAuthenticationFilter;
 import org.fibi.usos.filter.auth.jwt.JWTAuthorizationFilter;
-import org.fibi.usos.service.user.UserService;
 import org.fibi.usos.service.user.UserStandardService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -34,14 +33,14 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(SecurityConstants.AUTH_PATTERN_URLS,SecurityConstants.UTIL_PATTERN_URLS)
+                .antMatchers(SecurityConstants.AUTH_PATTERN_URLS, SecurityConstants.UTIL_PATTERN_URLS)
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(jwtAuthenticationFilter())
-                .addFilter(new JWTAuthorizationFilter(authenticationManager(),userService))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(), userService))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
@@ -57,12 +56,15 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource(){
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 
 
 }
