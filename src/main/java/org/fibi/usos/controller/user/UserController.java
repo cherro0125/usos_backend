@@ -44,6 +44,7 @@ public class UserController {
         return ResponseEntity.ok(res);
     }
 
+    @CrossOrigin(methods = RequestMethod.DELETE)
     @RequireRole({UserRole.DEAN,UserRole.RECTOR})
     @DeleteMapping("/{id}")
     public ResponseEntity<StandardMessageResponse> removeUserById(@PathVariable("id") Long id) {
