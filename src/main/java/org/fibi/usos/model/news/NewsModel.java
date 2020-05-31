@@ -32,6 +32,7 @@ public class NewsModel extends BaseIdentityModel {
         dto.setId(getId());
         dto.setDescription(description);
         dto.setTitle(title);
+        dto.setCreatedAt(createdAt);
         if(createdBy != null)
             dto.setCreatedBy(createdBy.mapToDto());
         return dto;
