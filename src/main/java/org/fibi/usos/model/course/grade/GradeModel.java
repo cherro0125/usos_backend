@@ -36,6 +36,7 @@ public class GradeModel extends BaseIdentityModel {
 
     public GradeDto MapToDto() {
         GradeDto dto = new GradeDto();
+        dto.setId(getId());
         dto.setDescription(getDescription());
         dto.setValue(getValue());
         dto.setExamDateType(getExamDateType());

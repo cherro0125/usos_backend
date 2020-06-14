@@ -20,7 +20,7 @@ public class CourseGroupController {
         this.courseGroupService = courseGroupService;
     }
 
-    @RequestMapping(value = "/course/group/{leaderId}", method = RequestMethod.GET)
+    @GetMapping(value = "/course/group/{leaderId}")
     public ResponseEntity<Collection<CourseGroupResponseDto>> getCourseGroupByLeaderId(@PathVariable("leaderId") long leaderId) {
         Optional<Collection<CourseGroupModel>> courseGroups = courseGroupService.getAllByLeaderId(leaderId);
         return courseGroups.<ResponseEntity<Collection<CourseGroupResponseDto>>>map(courseGroupModels -> ResponseEntity.ok(courseGroupModels.stream().map(CourseGroupModel::mapToResponseDto).collect(Collectors.toSet()))).orElseGet(() -> ResponseEntity.ok(null));

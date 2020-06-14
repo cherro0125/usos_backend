@@ -16,6 +16,7 @@ import javax.persistence.Enumerated;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GradeDto {
+    private long id;
     private String description;
     @Enumerated(EnumType.STRING)
     private GradeValueType value;
