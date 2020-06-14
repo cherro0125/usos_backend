@@ -3,6 +3,7 @@ package org.fibi.usos.controller.course.grade;
 import org.fibi.usos.annotation.RequireRole;
 import org.fibi.usos.dto.grade.GradeChangeRequestDto;
 import org.fibi.usos.dto.grade.GradeDto;
+import org.fibi.usos.entity.response.standard.StandardMessageResponse;
 import org.fibi.usos.model.course.grade.GradeModel;
 import org.fibi.usos.model.user.UserRole;
 import org.fibi.usos.service.course.grade.GradeService;
@@ -56,5 +57,17 @@ public class GradeController {
         Optional<Collection<GradeModel>> models = gradeService.findGradesByCreatedByUserId(lecturerUserId);
         models.ifPresent( model -> model.forEach(m -> responseDtos.add(m.MapToDto())));
         return ResponseEntity.ok(responseDtos);
+    }
+
+    @CrossOrigin(methods = RequestMethod.DELETE)
+    @RequireRole({UserRole.LECTURER})
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity<StandardMessageResponse> deleteGrade(@PathVariable("id") Long id) {
+        StandardMessageResponse response = new StandardMessageResponse();
+        if(gradeService.delete(id))
+            response.setMessage("Grade deleted.");
+        else
+            response.setMessage("Grade not found.");
+        return ResponseEntity.ok(response);
     }
 }

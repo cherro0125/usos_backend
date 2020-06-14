@@ -65,4 +65,12 @@ public class GradeStandardService implements GradeService{
     public Optional<Collection<GradeModel>> findGradesByCreatedByUserId(Long createdByUserId) {
         return gradeRepository.findAllByCreatedById(createdByUserId);
     }
+
+    public boolean delete(Long id) {
+        if(gradeRepository.findById(id).isPresent()){
+            gradeRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }

@@ -11,4 +11,5 @@ public interface GradeService {
     Optional<GradeModel> findGradeById(Long id);
     Optional<Collection<GradeModel>> findGradesByAssignedUserId(Long assignedUserId);
     Optional<Collection<GradeModel>> findGradesByCreatedByUserId(Long createdByUserId);
+    boolean delete(Long id);
 }
