@@ -27,7 +27,9 @@ public class DegreeCourseSeeder implements Seeder {
     @Override
     public void seed() {
         DegreeCourseModel degreeOne = new DegreeCourseModel("Informatyka","Lorem ipsum informaticum dolores",true,7, DegreeType.BACHELOR, Collections.emptySet());
+        DegreeCourseModel degreeTwo = new DegreeCourseModel("Ekonomia","Lorem ipsum ekonomikum dolores",false,7, DegreeType.BACHELOR, Collections.emptySet());
         degreeCourseRepository.save(degreeOne);
+        degreeCourseRepository.save(degreeTwo);
         logger.info("Create new degree course.");
     }
 }
