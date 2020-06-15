@@ -41,6 +41,7 @@ public class DegreeCourseModel extends BaseIdentityModel {
 
     public DegreeCourseResponseDto mapToResponseDto(){
         DegreeCourseResponseDto responseDto = new DegreeCourseResponseDto();
+        responseDto.setId(getId());
         responseDto.setDescription(description);
         responseDto.setFinalDegreeType(finalDegreeType);
         responseDto.setCourses(courses.stream().map(CourseModel::mapToResponseDto).collect(Collectors.toSet()));
