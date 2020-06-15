@@ -35,6 +35,9 @@ public class UserSeeder implements Seeder {
         //STUDENT
         UserModel student = new UserModel("student","Jan","Kowalski",passwordEncoder.encode("student"), UserRole.STUDENT);
         users.add(student);
+        //STUDENT
+        UserModel student2 = new UserModel("student2","Zenon","Pijak",passwordEncoder.encode("student2"), UserRole.STUDENT);
+        users.add(student2);
         //RECTOR
         UserModel rector = new UserModel("rector","Wiesław","Monciwoda",passwordEncoder.encode("rector"), UserRole.RECTOR);
         users.add(rector);
