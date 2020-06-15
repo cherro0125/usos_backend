@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DegreeCourseResponseDto {
+    private Long id;
     private String name;
     private String description;
     private Boolean isFullTimeStudies;
