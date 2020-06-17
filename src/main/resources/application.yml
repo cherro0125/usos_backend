@@ -4,16 +4,18 @@ server:
     context-path: /api
 
 
+
 spring:
   jpa:
     hibernate:
       ddl-auto: create-drop #change to update when models not modify (with update old columns will not be dropped)
     properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/usos
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/usos?useUnicode=yes&characterEncoding=UTF-8
     password: root
     username: root
     driver-class-name: com.mysql.jdbc.Driver
+
 
 usos:
   app:

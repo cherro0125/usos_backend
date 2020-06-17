@@ -16,6 +16,7 @@ public class SecurityConstants {
     public static final String HEADER_STRING = "Authorization";
     public static final String AUTH_PATTERN_URLS = "/auth/**";
     public static final String UTIL_PATTERN_URLS = "/util/**";
+    public static final String PAYMENT_NOTIFY_PATTERN_URLS = "/payment/notify";
     public static final String AUTH_LOGIN_URL = "/auth/login";
     public static final String USER_ID_CLAIM_NAME = "USER_ID";
     public static final String USER_ROLE_CLAIM_NAME = "USER_ROLE";

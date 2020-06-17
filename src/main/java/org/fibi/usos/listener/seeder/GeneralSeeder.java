@@ -4,6 +4,7 @@ import org.fibi.usos.listener.seeder.course.CourseSeeder;
 import org.fibi.usos.listener.seeder.course.degree.DegreeCourseSeeder;
 import org.fibi.usos.listener.seeder.course.grade.GradeSeeder;
 import org.fibi.usos.listener.seeder.course.group.CourseGroupSeeder;
+import org.fibi.usos.listener.seeder.payment.PaymentNoticeSeeder;
 import org.fibi.usos.listener.seeder.user.UserSeeder;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -16,18 +17,25 @@ public class GeneralSeeder implements Seeder {
     private CourseSeeder courseSeeder;
     private CourseGroupSeeder courseGroupSeeder;
     private GradeSeeder gradeSeeder;
+    private PaymentNoticeSeeder paymentNoticeSeeder;
 
-    public GeneralSeeder(UserSeeder userSeeder, DegreeCourseSeeder degreeCourseSeeder, CourseSeeder courseSeeder, CourseGroupSeeder courseGroupSeeder,GradeSeeder gradeSeeder) {
+    public GeneralSeeder(UserSeeder userSeeder, DegreeCourseSeeder degreeCourseSeeder, CourseSeeder courseSeeder, CourseGroupSeeder courseGroupSeeder, GradeSeeder gradeSeeder, PaymentNoticeSeeder paymentNoticeSeeder) {
         this.userSeeder = userSeeder;
         this.degreeCourseSeeder = degreeCourseSeeder;
         this.courseSeeder = courseSeeder;
         this.courseGroupSeeder = courseGroupSeeder;
         this.gradeSeeder = gradeSeeder;
+        this.paymentNoticeSeeder = paymentNoticeSeeder;
     }
 
     @Override
     public void init() {
-
+        userSeeder.init();
+        degreeCourseSeeder.init();
+        courseSeeder.init();
+        courseGroupSeeder.init();
+        gradeSeeder.init();
+        paymentNoticeSeeder.init();
     }
 
     @EventListener(ApplicationReadyEvent.class)
@@ -38,5 +46,6 @@ public class GeneralSeeder implements Seeder {
         courseSeeder.seed();
         courseGroupSeeder.seed();
         gradeSeeder.seed();
+        paymentNoticeSeeder.seed();
     }
 }

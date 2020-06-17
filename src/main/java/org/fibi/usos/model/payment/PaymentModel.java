@@ -19,11 +19,11 @@ import javax.persistence.*;
         strategy = InheritanceType.JOINED
 )
 public class PaymentModel extends BaseIdentityModel {
-    @ManyToOne
-    private UserModel payer;
-    @Enumerated(EnumType.STRING)
-    private PaymentPurposeType purposeType;
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
     private float paymentValue;
+    @OneToOne
+    private PaymentNoticeModel paymentNotice;
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
 }

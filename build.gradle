@@ -4,6 +4,10 @@ plugins {
     id 'java'
 }
 
+bootRun {
+    systemProperties = System.properties
+}
+
 group = 'org.fibi.usos'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
