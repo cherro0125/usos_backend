@@ -21,6 +21,13 @@ usos:
   app:
     jwtSecret: meowmeowlittlesecret
     expirationTime: 3600000
+    payu:
+      tokenRequestUrl: https://secure.snd.payu.com/pl/standard/user/oauth/authorize
+      orderRequestUrl: https://secure.snd.payu.com/api/v2_1/orders/
+      clientId: 389108
+      secret: d7d564dd92ee2293b374a8d108ca7768
+      notifyUrl: http://145.239.89.7:2137/api/payment/notify
+      merchantPosId: 389108
 
 
 

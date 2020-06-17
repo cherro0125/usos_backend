@@ -42,6 +42,7 @@ public class PaymentNoticeSeeder implements Seeder {
             paymentNotice.setDetails("Opłata za semestr");
             paymentNotice.setPurposeType(PaymentPurposeType.SEMESTER_PAYMENT);
             paymentNotice.setStatus(PaymentStatus.EXPECTANT);
+            paymentNotice.setValue(1000);
             paymentNoticeRepository.save(paymentNotice);
             logger.info("Create new PaymentNotice#1");
 
@@ -51,6 +52,7 @@ public class PaymentNoticeSeeder implements Seeder {
             paymentNotice2.setDetails("Opłata za pościg");
             paymentNotice2.setPurposeType(PaymentPurposeType.COURSE_CHACE);
             paymentNotice2.setStatus(PaymentStatus.REJECTED);
+            paymentNotice2.setValue(10000);
             paymentNoticeRepository.save(paymentNotice2);
             logger.info("Create new PaymentNotice#2");
         }else{

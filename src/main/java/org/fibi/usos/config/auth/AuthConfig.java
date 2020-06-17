@@ -18,6 +18,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
@@ -26,22 +28,30 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
 
     private UserStandardService userService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private List<String> ipAddressesForPayUCallback;
 
     public AuthConfig(UserStandardService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        ipAddressesForPayUCallback = Arrays.asList("185.68.14.10", "185.68.14.11", "185.68.14.12", "185.68.14.26", "185.68.14.27", "185.68.14.28");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(SecurityConstants.AUTH_PATTERN_URLS, SecurityConstants.UTIL_PATTERN_URLS,SecurityConstants.PAYMENT_NOTIFY_PATTERN_URLS)
+                .antMatchers(SecurityConstants.AUTH_PATTERN_URLS, SecurityConstants.UTIL_PATTERN_URLS)
                 .permitAll()
+                .antMatchers(SecurityConstants.PAYMENT_NOTIFY_PATTERN_URLS).access(createHasIpExpression())
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(jwtAuthenticationFilter())
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), userService))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    }
+
+    private String createHasIpExpression(){
+        return ipAddressesForPayUCallback.stream()
+                .collect(Collectors.joining("') or hasIpAddress('", "hasIpAddress('","')"));
     }
 
     @Override

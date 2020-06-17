@@ -9,6 +9,7 @@ import org.fibi.usos.model.base.BaseIdentityModel;
 import org.fibi.usos.model.user.UserModel;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 @Data
@@ -29,6 +30,8 @@ public class PaymentNoticeModel extends BaseIdentityModel {
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
     private Date payableTo;
+    @Min(1)
+    private long value;
 
     public PaymentNoticeDto mapToDto(){
         PaymentNoticeDto dto = new PaymentNoticeDto();

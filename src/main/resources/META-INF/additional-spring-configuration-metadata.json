@@ -9,5 +9,35 @@
       "name": "usos.app.expirationTime",
       "type": "java.lang.String",
       "description": "Description for usos.app.expirationTime."
+    },
+    {
+      "name": "usos.app.payu.tokenRequestUrl",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.payu.tokenRequestUrl."
+    },
+    {
+      "name": "usos.app.payu.orderRequestUrl",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.payu.orderRequestUrl."
+    },
+    {
+      "name": "usos.app.payu.client-id",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.payu.client-id."
+    },
+    {
+      "name": "usos.app.payu.secret",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.payu.secret."
+    },
+    {
+      "name": "usos.app.payu.notifyUrl",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.payu.notifyUrl."
+    },
+    {
+      "name": "usos.app.payu.merchantPosId",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.payu.merchantPosId."
     }
   ] }
