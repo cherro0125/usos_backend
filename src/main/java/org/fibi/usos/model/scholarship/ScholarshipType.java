@@ -4,7 +4,6 @@ import org.fibi.usos.annotation.RegisterEnum;
 
 @RegisterEnum
 public enum ScholarshipType {
-    SCIENCE_SCHOLARSHIP,
-    SPORT_SCHOLARSHIP,
+    SOCIAL_SCHOLARSHIP,
     RECTOR_SCHOLARSHIP
 }
