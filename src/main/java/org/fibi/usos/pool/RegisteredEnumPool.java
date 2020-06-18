@@ -2,18 +2,19 @@ package org.fibi.usos.pool;
 
 import org.fibi.usos.annotation.RegisterEnum;
 import org.reflections.Reflections;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
 import javax.annotation.PostConstruct;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 
 @Component
 public class RegisteredEnumPool {
 
-    private static final Logger logger  = Logger.getLogger(RegisteredEnumPool.class.getName());
+    private static final Logger logger  = LoggerFactory.getLogger(RegisteredEnumPool.class);
     private static Reflections reflections = new Reflections("org.fibi.usos");
     private static Set<Class<?>> annotatedEnums;
 

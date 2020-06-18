@@ -8,8 +8,11 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import org.fibi.usos.constant.auth.SecurityConstants;
 import org.fibi.usos.listener.seeder.course.degree.DegreeCourseSeeder;
 import org.fibi.usos.model.user.UserModel;
+import org.fibi.usos.pool.RegisteredEnumPool;
 import org.fibi.usos.service.auth.AuthService;
 import org.fibi.usos.service.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,12 +28,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
-import java.util.logging.Logger;
 
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    private static final Logger logger = Logger.getLogger(JWTAuthorizationFilter.class.getName());
+    private static final Logger logger  = LoggerFactory.getLogger(JWTAuthorizationFilter.class);
     @Autowired
     private UserService userService;
 
@@ -53,9 +55,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             chain.doFilter(request, response);
         } catch (TokenExpiredException e) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getLocalizedMessage());
-            logger.warning(e.getLocalizedMessage());
+            logger.error(e.getLocalizedMessage());
         }catch (Exception e){
-            logger.warning(e.getLocalizedMessage());
+            logger.error(e.getLocalizedMessage());
         }
     }
 

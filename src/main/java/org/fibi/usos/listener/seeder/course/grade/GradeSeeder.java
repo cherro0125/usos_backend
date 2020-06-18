@@ -7,13 +7,15 @@ import org.fibi.usos.model.course.grade.GradeValueType;
 import org.fibi.usos.model.course.group.CourseGroupModel;
 import org.fibi.usos.model.exam.ExamDateType;
 import org.fibi.usos.model.user.UserModel;
+import org.fibi.usos.pool.RegisteredEnumPool;
 import org.fibi.usos.repository.course.grade.GradeRepository;
 import org.fibi.usos.service.course.group.CourseGroupService;
 import org.fibi.usos.service.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Component
 public class GradeSeeder implements Seeder {
@@ -21,7 +23,7 @@ public class GradeSeeder implements Seeder {
     private UserService userService;
     private GradeRepository gradeRepository;
     private CourseGroupService courseGroupService;
-    private static final Logger logger  = Logger.getLogger(CourseGroupSeeder.class.getName());
+    private static final Logger logger  = LoggerFactory.getLogger(CourseGroupSeeder.class);
 
     public GradeSeeder(UserService userService,GradeRepository gradeRepository, CourseGroupService courseGroupService){
         this.userService = userService;

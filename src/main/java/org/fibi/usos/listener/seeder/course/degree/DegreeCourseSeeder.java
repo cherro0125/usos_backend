@@ -3,16 +3,18 @@ package org.fibi.usos.listener.seeder.course.degree;
 import org.fibi.usos.listener.seeder.Seeder;
 import org.fibi.usos.model.degree.DegreeCourseModel;
 import org.fibi.usos.model.degree.DegreeType;
+import org.fibi.usos.pool.RegisteredEnumPool;
 import org.fibi.usos.repository.course.degree.DegreeCourseRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
-import java.util.logging.Logger;
 
 @Component
 public class DegreeCourseSeeder implements Seeder {
 
-    private static final Logger logger  = Logger.getLogger(DegreeCourseSeeder.class.getName());
+    private static final Logger logger  = LoggerFactory.getLogger(DegreeCourseSeeder.class);
     private DegreeCourseRepository degreeCourseRepository;
 
     public DegreeCourseSeeder(DegreeCourseRepository degreeCourseRepository) {

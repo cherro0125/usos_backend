@@ -5,23 +5,25 @@ import org.fibi.usos.model.course.CourseModel;
 import org.fibi.usos.model.course.CourseType;
 import org.fibi.usos.model.course.group.CourseGroupModel;
 import org.fibi.usos.model.user.UserModel;
+import org.fibi.usos.pool.RegisteredEnumPool;
 import org.fibi.usos.repository.course.CourseRepository;
 import org.fibi.usos.repository.course.group.CourseGroupRepository;
 import org.fibi.usos.service.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 
 @Component
 public class CourseGroupSeeder  implements Seeder {
     private UserService userService;
     private CourseRepository courseRepository;
     private CourseGroupRepository courseGroupRepository;
-    private static final Logger logger  = Logger.getLogger(CourseGroupSeeder.class.getName());
+    private static final Logger logger  = LoggerFactory.getLogger(CourseGroupSeeder.class);
 
     public CourseGroupSeeder(UserService userService, CourseRepository courseRepository, CourseGroupRepository courseGroupRepository) {
         this.userService = userService;

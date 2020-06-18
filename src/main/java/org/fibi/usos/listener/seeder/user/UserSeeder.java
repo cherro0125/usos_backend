@@ -1,12 +1,14 @@
 package org.fibi.usos.listener.seeder.user;
 
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import org.fibi.usos.listener.seeder.Seeder;
 import org.fibi.usos.model.user.UserModel;
 import org.fibi.usos.model.user.UserRole;
+import org.fibi.usos.pool.RegisteredEnumPool;
 import org.fibi.usos.service.user.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -17,7 +19,7 @@ import java.util.List;
 @Component
 public class UserSeeder implements Seeder {
 
-    private static final Logger logger  = Logger.getLogger(UserSeeder.class.getName());
+    private static final Logger logger  = LoggerFactory.getLogger(UserSeeder.class);
     private List<UserModel> users = new ArrayList<>();
     private UserService userService;
     private PasswordEncoder passwordEncoder;

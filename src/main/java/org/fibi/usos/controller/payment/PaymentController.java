@@ -6,21 +6,23 @@ import org.fibi.usos.dto.payment.notice.payu.RedirectDto;
 import org.fibi.usos.entity.payment.payu.OrderCallback;
 import org.fibi.usos.entity.response.standard.StandardMessageResponse;
 import org.fibi.usos.model.user.UserRole;
+import org.fibi.usos.pool.RegisteredEnumPool;
 import org.fibi.usos.service.payment.PaymentService;
 import org.fibi.usos.service.payment.payu.PayUService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
 
-    private static final Logger logger  = Logger.getLogger(PaymentController.class.getName());
+    private static final Logger logger  = LoggerFactory.getLogger(PaymentController.class);
     private PaymentService paymentService;
     private PayUService payUService;
 
