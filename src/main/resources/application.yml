@@ -28,6 +28,7 @@ usos:
       secret: d7d564dd92ee2293b374a8d108ca7768
       notifyUrl: http://145.239.89.7:2137/api/payment/notify
       merchantPosId: 389108
+      continueUrl: http://localhost:8081/student/payments
 
 
 

@@ -6,5 +6,6 @@ public enum PaymentStatus {
     WAITING_FOR_CONFIRMATION,
     CANCELED,
     CREATED,
-    REJECTED
+    REJECTED,
+    NEW
 }

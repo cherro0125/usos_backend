@@ -39,5 +39,10 @@
       "name": "usos.app.payu.merchantPosId",
       "type": "java.lang.String",
       "description": "Description for usos.app.payu.merchantPosId."
+    },
+    {
+      "name": "usos.app.payu.continueUrl",
+      "type": "java.lang.String",
+      "description": "Description for usos.app.payu.continueUrl."
     }
   ] }

@@ -4,29 +4,27 @@ package org.fibi.usos.service.payment.payu;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.tomcat.util.codec.binary.StringUtils;
 import org.fibi.usos.entity.payment.payu.Order;
 import org.fibi.usos.entity.payment.payu.product.OrderProduct;
 import org.fibi.usos.model.payment.PaymentNoticeModel;
 import org.fibi.usos.service.payment.PaymentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Service
 @Component
 public class PayUStandardService implements PayUService {
 
-    private static final Logger logger  = Logger.getLogger(PayUStandardService.class.getName());
+    private static final Logger logger  = LoggerFactory.getLogger(PayUStandardService.class);
 
     private PaymentService paymentService;
     @Value("${usos.app.payu.tokenRequestUrl}")
@@ -41,6 +39,8 @@ public class PayUStandardService implements PayUService {
     private String notifyUrl;
     @Value("${usos.app.payu.merchantPosId}")
     private String merchantPosId;
+    @Value("${usos.app.payu.continueUrl}")
+    private String continueUrl;
 
     public PayUStandardService(PaymentService paymentService) {
         this.paymentService = paymentService;
@@ -63,7 +63,7 @@ public class PayUStandardService implements PayUService {
                 JsonNode root = mapper.readTree(response.getBody());
                 return Optional.of(root.path("redirectUri").asText());
             } catch (JsonProcessingException e) {
-                logger.warning(e.getLocalizedMessage());
+                logger.trace(e.getLocalizedMessage(),e);
             }
         }
         return Optional.empty();
@@ -73,12 +73,14 @@ public class PayUStandardService implements PayUService {
     private Order prepareOrder(PaymentNoticeModel paymentNoticeModel){
         Order order = new Order();
         order.setNotifyUrl(notifyUrl);
+        order.setContinueUrl(continueUrl);
         order.setCustomerIp("127.0.0.1");
         order.setMerchantPosId(merchantPosId);
         order.setDescription(paymentNoticeModel.getDetails());
         order.setCurrencyCode("PLN");
         order.setTotalAmount(paymentNoticeModel.getValue());
-        order.setProducts(Collections.singletonList(new OrderProduct(paymentNoticeModel.getDetails(),paymentNoticeModel.getValue(),1)));
+//        order.setExtOrderId(paymentNoticeModel.getId());
+        order.setProducts(Collections.singletonList(new OrderProduct(paymentNoticeModel.getId().toString(),paymentNoticeModel.getValue(),1)));
 
         return order;
     }

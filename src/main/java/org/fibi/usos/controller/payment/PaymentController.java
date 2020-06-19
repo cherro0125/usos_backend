@@ -3,8 +3,11 @@ package org.fibi.usos.controller.payment;
 import org.fibi.usos.annotation.RequireRole;
 import org.fibi.usos.dto.payment.notice.PaymentNoticeDto;
 import org.fibi.usos.dto.payment.notice.payu.RedirectDto;
+import org.fibi.usos.entity.payment.payu.Order;
 import org.fibi.usos.entity.payment.payu.OrderCallback;
+import org.fibi.usos.entity.payment.payu.product.OrderProduct;
 import org.fibi.usos.entity.response.standard.StandardMessageResponse;
+import org.fibi.usos.model.payment.PaymentModel;
 import org.fibi.usos.model.user.UserRole;
 import org.fibi.usos.pool.RegisteredEnumPool;
 import org.fibi.usos.service.payment.PaymentService;
@@ -47,6 +50,11 @@ public class PaymentController {
     @PostMapping(path = "/notify",consumes = "application/json", produces = "application/json")
     public ResponseEntity<StandardMessageResponse> payuCallback(@RequestBody OrderCallback orderCallback){
         logger.info(orderCallback.toString());
+        Order order = orderCallback.getOrder();
+        if(order != null){
+            order.getPaymentNoticeId().ifPresent( o ->  paymentService.changePaymentNoticeStatus(o,order.getStatus()));
+        }
+        paymentService.preparePaymentHistory(orderCallback).ifPresent(paymentService::createPaymentHistory);
         StandardMessageResponse standardMessageResponse = new StandardMessageResponse();
         standardMessageResponse.setMessage("Done");
         return ResponseEntity.ok(standardMessageResponse);

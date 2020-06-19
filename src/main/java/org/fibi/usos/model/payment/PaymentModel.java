@@ -19,6 +19,9 @@ import javax.persistence.*;
         strategy = InheritanceType.JOINED
 )
 public class PaymentModel extends BaseIdentityModel {
+    private String email;
+    private String firstName;
+    private String lastName;
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
     private float paymentValue;
@@ -26,4 +29,5 @@ public class PaymentModel extends BaseIdentityModel {
     private PaymentNoticeModel paymentNotice;
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
+
 }
