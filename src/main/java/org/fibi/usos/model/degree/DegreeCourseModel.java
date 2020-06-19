@@ -44,7 +44,8 @@ public class DegreeCourseModel extends BaseIdentityModel {
         responseDto.setId(getId());
         responseDto.setDescription(description);
         responseDto.setFinalDegreeType(finalDegreeType);
-        responseDto.setCourses(courses.stream().map(CourseModel::mapToResponseDto).collect(Collectors.toSet()));
+        if(courses!=null)
+            responseDto.setCourses(courses.stream().map(CourseModel::mapToResponseDto).collect(Collectors.toSet()));
         responseDto.setIsFullTimeStudies(isFullTimeStudies);
         responseDto.setName(name);
         responseDto.setNumberOfSemesters(numberOfSemesters);
