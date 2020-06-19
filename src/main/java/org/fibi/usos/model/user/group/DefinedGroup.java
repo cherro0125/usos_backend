@@ -39,7 +39,8 @@ public class DefinedGroup extends BaseIdentityModel {
         responseDto.setName(name);
         responseDto.setDescription(description);
         responseDto.setDegreeCourseModel(degreeCourse);
-        responseDto.setStudents(students.stream().map(UserModel::mapToDto).collect(Collectors.toSet()));
+        if(students!=null)
+            responseDto.setStudents(students.stream().map(UserModel::mapToDto).collect(Collectors.toSet()));
         return responseDto;
     }
 }
