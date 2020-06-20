@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">News</title>
+</head>
+<body>
+    Hello <p th:text="${firstName} + ' ' + ${lastName}"></p>
+    Check news on USOS FIBI Web with title <p th:text="${newsTitle}"></p> created by <p th:text="${creatorFirstName} + ' ' + ${creatorLastName}"></p>
+
+    Best regards!
+</body>
+</html>

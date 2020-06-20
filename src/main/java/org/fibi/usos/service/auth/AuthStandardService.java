@@ -37,7 +37,7 @@ public class AuthStandardService implements AuthService {
             throw new UserAlreadyExistsException();
         String passwordHash = bCryptPasswordEncoder.encode(req.getPassword());
         UserRole role = req.getRole() != null ? req.getRole() : UserRole.STUDENT;
-        UserModel user = new UserModel(req.getUsername(),req.getFirstName(),req.getLastName(),passwordHash,role,null);
+        UserModel user = new UserModel(req.getUsername(),req.getFirstName(),req.getLastName(),passwordHash,role,null,"usos.fibi@gmail.com");
         return userService.createOrUpdate(user);
     }
 

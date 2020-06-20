@@ -15,6 +15,19 @@ spring:
     password: root
     username: root
     driver-class-name: com.mysql.jdbc.Driver
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: usos.fibi@gmail.com
+    password: Fibi123@
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
 
 
 usos:
@@ -28,7 +41,7 @@ usos:
       secret: d7d564dd92ee2293b374a8d108ca7768
       notifyUrl: http://145.239.89.7:2137/api/payment/notify
       merchantPosId: 389108
-      continueUrl: http://localhost:8081/student/payments
+      continueUrl: https://localhost:8081/student/payments
 
 
 

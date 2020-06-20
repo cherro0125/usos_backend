@@ -12,5 +12,6 @@ public interface NewsService {
     Optional<Collection<NewsModel>> getByCreatorId(Long creatorId);
     Optional<Iterable<NewsModel>> getAll();
     Optional<NewsModel> createNews(NewsRequestDto dto);
+    void notifyByEmail(NewsModel newsModel);
 
 }

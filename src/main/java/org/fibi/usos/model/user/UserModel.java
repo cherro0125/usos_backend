@@ -37,6 +37,7 @@ public class UserModel extends BaseIdentityModel implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole role;
     private String facebookUserId;
+    private String email;
 
 
 

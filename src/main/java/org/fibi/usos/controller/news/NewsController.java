@@ -5,9 +5,12 @@ import org.fibi.usos.dto.news.NewsRequestDto;
 import org.fibi.usos.dto.news.NewsResponseDto;
 import org.fibi.usos.model.news.NewsModel;
 import org.fibi.usos.model.user.UserRole;
+import org.fibi.usos.service.email.EmailSenderService;
 import org.fibi.usos.service.news.NewsService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,6 +24,7 @@ public class NewsController {
 
     private NewsService newsService;
 
+
     public NewsController(NewsService newsService) {
         this.newsService = newsService;
     }
@@ -31,6 +35,7 @@ public class NewsController {
         NewsResponseDto res = new NewsResponseDto();
         Optional<NewsModel> model = newsService.createNews(dto);
         if(model.isPresent()){
+            newsService.notifyByEmail(model.get());
             res = model.get().mapToDto();
         }
         return ResponseEntity.ok(res);

@@ -29,12 +29,20 @@ public class UserStandardService implements UserService {
             user.setPasswordHash(newUser.getPasswordHash());
             user.setUsername(newUser.getUsername());
             user.setRole(newUser.getRole());
+            user.setFacebookUserId(newUser.getFacebookUserId());
+            user.setEmail(newUser.getEmail());
+            user.setFirstName(newUser.getFirstName());
+            user.setLastName(newUser.getLastName());
             return userRepository.save(user);
         }).orElseGet(() ->{
             UserModel user = new UserModel();
             user.setPasswordHash(newUser.getPasswordHash());
             user.setUsername(newUser.getUsername());
             user.setRole(newUser.getRole());
+            user.setFacebookUserId(newUser.getFacebookUserId());
+            user.setEmail(newUser.getEmail());
+            user.setFirstName(newUser.getFirstName());
+            user.setLastName(newUser.getLastName());
             return userRepository.save(newUser);
         }));
     }
