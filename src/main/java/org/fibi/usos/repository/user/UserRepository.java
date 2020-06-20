@@ -13,4 +13,5 @@ public interface UserRepository extends CrudRepository<UserModel,Long> {
     Optional<UserModel> findUserModelByUsername(String username);
     Optional<Collection<UserModel>> findAllByRole(UserRole role);
     Optional<UserModel> findUserModelByFacebookUserId(String facebookUserId);
+    Optional<UserModel> findAllById(Long id);
 }
