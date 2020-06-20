@@ -18,5 +18,6 @@ public class UserDto {
     private String lastName;
     @Enumerated(EnumType.STRING)
     private UserRole role;
+    private boolean hasFacebookAccountLinked;
 
 }

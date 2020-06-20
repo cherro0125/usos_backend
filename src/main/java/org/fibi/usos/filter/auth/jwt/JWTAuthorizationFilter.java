@@ -6,11 +6,13 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.fibi.usos.constant.auth.SecurityConstants;
+import org.fibi.usos.exception.JwtBadTokenToDecodeException;
 import org.fibi.usos.listener.seeder.course.degree.DegreeCourseSeeder;
 import org.fibi.usos.model.user.UserModel;
 import org.fibi.usos.pool.RegisteredEnumPool;
 import org.fibi.usos.service.auth.AuthService;
 import org.fibi.usos.service.user.UserService;
+import org.fibi.usos.util.jwt.JWTUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,13 +63,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         }
     }
 
-    private UsernamePasswordAuthenticationToken getAuthenticationToken(HttpServletRequest request) {
+    private UsernamePasswordAuthenticationToken getAuthenticationToken(HttpServletRequest request) throws JwtBadTokenToDecodeException {
         Optional<String> token = Optional.ofNullable(request.getHeader(SecurityConstants.HEADER_STRING));
 
         if (token.isPresent()) {
-            DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()))
-                    .build()
-                    .verify(token.get().replace(SecurityConstants.TOKEN_PREFIX, ""));
+            DecodedJWT decodedJWT = JWTUtil.decodedJWT(token.get());
             Optional<String> user = Optional.ofNullable(decodedJWT.getSubject());
             Optional<String> userRole = Optional.ofNullable(decodedJWT.getClaim(SecurityConstants.USER_ROLE_CLAIM_NAME).asString());
 

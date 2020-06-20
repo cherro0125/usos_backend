@@ -1,5 +1,7 @@
 package org.fibi.usos.service.user;
 
+import org.apache.commons.lang3.StringUtils;
+import org.fibi.usos.entity.response.facebook.LinkInfoStatus;
 import org.fibi.usos.model.user.UserModel;
 import org.fibi.usos.model.user.UserRole;
 import org.fibi.usos.repository.user.UserRepository;
@@ -64,6 +66,41 @@ public class UserStandardService implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Optional<UserModel> findByFacebookUserId(String facebookUserId) {
+        return userRepository.findUserModelByFacebookUserId(facebookUserId);
+    }
+
+    @Override
+    public LinkInfoStatus linkFacebookAccountToUser(Long userId, String facebookUserId) {
+        Optional<UserModel> user = userRepository.findById(userId);
+        if(user.isPresent()){
+            UserModel model = user.get();
+            if(StringUtils.isNoneBlank(model.getFacebookUserId()))
+                return LinkInfoStatus.LINK_ALREADY_EXISTS;
+            model.setFacebookUserId(facebookUserId);
+            userRepository.save(model);
+            return LinkInfoStatus.LINKED;
+        }
+        return LinkInfoStatus.USER_NOT_EXISTS;
+    }
+
+    @Override
+    public LinkInfoStatus unlinkFacebook(Long userId) {
+        Optional<UserModel> user = userRepository.findById(userId);
+        if(user.isPresent()){
+            UserModel model = user.get();
+            if(StringUtils.isNoneBlank(model.getFacebookUserId())){
+                model.setFacebookUserId(null);
+                userRepository.save(model);
+                return LinkInfoStatus.UNLINKED;
+            }
+            return LinkInfoStatus.UNLINKED;
+        }
+        return LinkInfoStatus.USER_NOT_EXISTS;
+
     }
 
     @Override

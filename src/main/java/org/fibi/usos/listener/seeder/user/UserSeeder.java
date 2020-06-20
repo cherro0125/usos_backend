@@ -33,19 +33,19 @@ public class UserSeeder implements Seeder {
     @Override
     public void init() {
         //STUDENT
-        UserModel student = new UserModel("student","Jan","Kowalski",passwordEncoder.encode("student"), UserRole.STUDENT);
+        UserModel student = new UserModel("student","Jan","Kowalski",passwordEncoder.encode("student"), UserRole.STUDENT,null);
         users.add(student);
         //STUDENT
-        UserModel student2 = new UserModel("student2","Zenon","Pijak",passwordEncoder.encode("student2"), UserRole.STUDENT);
+        UserModel student2 = new UserModel("student2","Zenon","Pijak",passwordEncoder.encode("student2"), UserRole.STUDENT,null);
         users.add(student2);
         //RECTOR
-        UserModel rector = new UserModel("rector","Wiesław","Monciwoda",passwordEncoder.encode("rector"), UserRole.RECTOR);
+        UserModel rector = new UserModel("rector","Wiesław","Monciwoda",passwordEncoder.encode("rector"), UserRole.RECTOR,null);
         users.add(rector);
         //LECTURER
-        UserModel lecturer = new UserModel("lecturer","Tomasz","Neural",passwordEncoder.encode("lecturer"), UserRole.LECTURER);
+        UserModel lecturer = new UserModel("lecturer","Tomasz","Neural",passwordEncoder.encode("lecturer"), UserRole.LECTURER,null);
         users.add(lecturer);
         //DEAN
-        UserModel dean = new UserModel("dean","Janusz","Dziekan",passwordEncoder.encode("dean"), UserRole.DEAN);
+        UserModel dean = new UserModel("dean","Janusz","Dziekan",passwordEncoder.encode("dean"), UserRole.DEAN,null);
         users.add(dean);
     }
 

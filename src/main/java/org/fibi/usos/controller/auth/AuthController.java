@@ -1,15 +1,21 @@
 package org.fibi.usos.controller.auth;
 
+import org.fibi.usos.dto.Auth.AuthLoginResponseDto;
 import org.fibi.usos.dto.Auth.AuthRegisterRequestDto;
 import org.fibi.usos.dto.Auth.AuthRegisterResponseDto;
+import org.fibi.usos.entity.facebook.FacebookLinkAccountRequest;
+import org.fibi.usos.entity.facebook.FacebookLoginRequest;
+import org.fibi.usos.entity.response.facebook.LinkInfoResponse;
 import org.fibi.usos.exception.auth.UserAlreadyExistsException;
 import org.fibi.usos.service.auth.AuthService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -35,4 +41,10 @@ public class AuthController {
             return res;
         }
     }
+
+    @PostMapping("/facebook/login")
+    public ResponseEntity<AuthLoginResponseDto> loginByFacebook(@Valid @RequestBody FacebookLoginRequest facebookLoginRequest){
+        return ResponseEntity.of(authService.getLoginResponseForFacebookLogin(facebookLoginRequest));
+    }
+
 }

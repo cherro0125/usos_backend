@@ -36,6 +36,10 @@ public class UserModel extends BaseIdentityModel implements UserDetails {
     private String passwordHash;
     @Enumerated(EnumType.STRING)
     private UserRole role;
+    private String facebookUserId;
+
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -76,6 +80,7 @@ public class UserModel extends BaseIdentityModel implements UserDetails {
         dto.setUsername(getUsername());
         dto.setFirstName(getFirstName());
         dto.setLastName(getLastName());
+        dto.setHasFacebookAccountLinked(facebookUserId != null && !facebookUserId.isEmpty());
         return dto;
     }
 }

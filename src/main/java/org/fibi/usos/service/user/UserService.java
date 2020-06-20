@@ -1,5 +1,6 @@
 package org.fibi.usos.service.user;
 
+import org.fibi.usos.entity.response.facebook.LinkInfoStatus;
 import org.fibi.usos.model.user.UserModel;
 import org.fibi.usos.model.user.UserRole;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,4 +15,7 @@ public interface UserService extends UserDetailsService {
     Optional<Collection<UserModel>> findAllByRole(UserRole role);
     Iterable<UserModel> findAll();
     boolean remove(Long id);
+    Optional<UserModel> findByFacebookUserId(String facebookUserId);
+    LinkInfoStatus linkFacebookAccountToUser(Long userId, String facebookUserId);
+    LinkInfoStatus unlinkFacebook(Long userId);
 }

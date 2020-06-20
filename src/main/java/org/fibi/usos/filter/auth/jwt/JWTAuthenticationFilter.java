@@ -1,7 +1,5 @@
 package org.fibi.usos.filter.auth.jwt;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,6 +8,7 @@ import org.fibi.usos.dto.Auth.AuthLoginResponseDto;
 import org.fibi.usos.exception.auth.BadAuthRequestException;
 import org.fibi.usos.model.user.UserModel;
 import org.fibi.usos.strategy.exlcusion.JsonIgnoreExclusionStrategy;
+import org.fibi.usos.util.jwt.JWTUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,9 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 
-import static org.fibi.usos.constant.auth.SecurityConstants.*;
+import static org.fibi.usos.constant.auth.SecurityConstants.HEADER_STRING;
+import static org.fibi.usos.constant.auth.SecurityConstants.TOKEN_PREFIX;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -63,12 +62,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         UserModel user = (UserModel) authResult.getPrincipal();
-        String token = JWT.create()
-                .withSubject(user.getUsername())
-                .withClaim(USER_ROLE_CLAIM_NAME,user.getRole().toString())
-                .withClaim(USER_ID_CLAIM_NAME,user.getId())
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .sign(Algorithm.HMAC512(SECRET.getBytes()));
+        String token = null;
+        try {
+            token = JWTUtil.generateJWTToken(user);
+        } catch (Exception e) {
+            logger.error(e);
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            return;
+        }
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
