@@ -30,7 +30,7 @@ public class DefinedGroup extends BaseIdentityModel {
     @ManyToOne
     private DegreeCourseModel degreeCourse;
 
-    @OneToMany
+    @ManyToMany
     private Set<UserModel> students;
 
     public DefinedGroupResponseDto mapToResponseDto(){

@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<UserModel,Long> {
     Optional<UserModel> findUserModelByUsername(String username);
     Optional<Collection<UserModel>> findAllByRole(UserRole role);
+    Optional<UserModel> findAllById(Long id);
 }
