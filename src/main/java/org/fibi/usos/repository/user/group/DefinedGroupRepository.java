@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface DefinedGroupRepository extends CrudRepository<DefinedGroup,Long> {
     Optional<DefinedGroup> findByName(String name);
     Optional<Collection<DefinedGroup>> getAllByDegreeCourseId(Long degreeCourseId);
+    Optional<Collection<DefinedGroup>> findByDegreeCourseId(Long degreeCourseId);
+
 }

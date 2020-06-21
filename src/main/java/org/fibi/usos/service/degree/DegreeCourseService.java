@@ -9,4 +9,5 @@ public interface DegreeCourseService {
     Optional<DegreeCourseModel> getById(Long id);
     Optional<Iterable<DegreeCourseModel>> getAll();
     Optional<DegreeCourseModel> create(DegreeCourseRequestDto course);
+    boolean delete(Long id);
 }
