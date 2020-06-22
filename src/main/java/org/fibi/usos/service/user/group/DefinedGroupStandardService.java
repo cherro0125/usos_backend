@@ -68,4 +68,27 @@ public class DefinedGroupStandardService implements DefinedGroupService{
         return  Optional.empty();
 
     }
+    @Override
+    public boolean delete(Long id) {
+        if(definedGroupRepository.findById(id).isPresent()){
+            definedGroupRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean removeStudent(Long id, Long studentId) {
+        if(definedGroupRepository.findById(id).isPresent()){
+            if(userRepository.findById(studentId).isPresent()) {
+                DefinedGroup group = definedGroupRepository.findById(id).get();
+
+                UserModel studentToRemove = userRepository.findById(studentId).get();
+                group.getStudents().remove(studentToRemove);
+                definedGroupRepository.save(group);
+                return true;
+            }
+        }
+        return false;
+    }
 }

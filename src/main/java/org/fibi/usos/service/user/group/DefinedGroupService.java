@@ -14,4 +14,6 @@ public interface DefinedGroupService {
     Optional<DefinedGroup> create(DefinedGroupRequestDto course);
     Optional<Iterable<DefinedGroup>> getAll();
     Optional<DefinedGroup> addStudent(DefinedGroupStudentsRequestDto dto);
+    boolean delete(Long id);
+    boolean removeStudent(Long id, Long studentId);
 }

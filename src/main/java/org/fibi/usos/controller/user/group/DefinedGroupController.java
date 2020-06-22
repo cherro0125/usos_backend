@@ -4,6 +4,7 @@ import org.fibi.usos.annotation.RequireRole;
 import org.fibi.usos.dto.user.group.DefinedGroupRequestDto;
 import org.fibi.usos.dto.user.group.DefinedGroupResponseDto;
 import org.fibi.usos.dto.user.group.DefinedGroupStudentsRequestDto;
+import org.fibi.usos.entity.response.standard.StandardMessageResponse;
 import org.fibi.usos.model.user.UserRole;
 import org.fibi.usos.model.user.group.DefinedGroup;
 import org.fibi.usos.service.user.group.DefinedGroupService;
@@ -58,5 +59,25 @@ public class DefinedGroupController {
             res = model.get().mapToResponseDto();
         }
         return ResponseEntity.ok(res);
+    }
+    @RequireRole({UserRole.DEAN})
+    @DeleteMapping("/{id}/removeStudent/{studentId}")
+    public ResponseEntity<StandardMessageResponse> removeStudentDefinedCourse(@PathVariable("id") Long id,@PathVariable("studentId") Long studentId) {
+        StandardMessageResponse response = new StandardMessageResponse();
+        if(definedGroupService.removeStudent(id, studentId))
+            response.setMessage("Student removed from group.");
+        else
+            response.setMessage("Student not removed from group.");
+        return ResponseEntity.ok(response);
+    }
+    @RequireRole({UserRole.DEAN})
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity<StandardMessageResponse> deleteDefinedGroup(@PathVariable("id") Long id) {
+        StandardMessageResponse response = new StandardMessageResponse();
+        if(definedGroupService.delete(id))
+            response.setMessage("Group deleted.");
+        else
+            response.setMessage("Group not found.");
+        return ResponseEntity.ok(response);
     }
 }
