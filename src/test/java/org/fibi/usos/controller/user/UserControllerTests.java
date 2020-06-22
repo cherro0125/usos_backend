@@ -54,7 +54,7 @@ public class UserControllerTests {
 
     @Test
     @WithUserDetails("rector")
-    public void getAllUserInSpecificNotValidRoleUsingUserWithValidRole() throws Exception {
+    public void getAllUserInSpecificNotValidRolreUsingUserWithValidRole() throws Exception {
         mockMvc.perform(get("/user/AAA/all"))
                 .andExpect(status().isBadRequest());
     }
