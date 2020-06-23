@@ -1,5 +1,7 @@
 # USOS Backend
 
+## Testy automatyczne
+link do repozytorium: https://github.com/Kasiaak/USOSautomation
 
 Temat projektu: 
 ----
