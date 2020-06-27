@@ -7,7 +7,8 @@ public enum UserRole {
     STUDENT(Names.STUDENT),
     LECTURER(Names.LECTURER),
     RECTOR(Names.RECTOR),
-    DEAN(Names.DEAN);
+    DEAN(Names.DEAN),
+    PORTER(Names.PORTER);
 
     private final String value;
 
@@ -16,6 +17,7 @@ public enum UserRole {
         public static final String LECTURER = "LECTURER";
         public static final String RECTOR = "RECTOR";
         public static final String DEAN = "DEAN";
+        public static final String PORTER = "PORTER";
     }
 
 

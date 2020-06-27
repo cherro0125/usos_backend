@@ -47,6 +47,9 @@ public class UserSeeder implements Seeder {
         //DEAN
         UserModel dean = new UserModel("dean","Janusz","Dziekan",passwordEncoder.encode("dean"), UserRole.DEAN,null,"usos.fibi@gmail.com");
         users.add(dean);
+        //PORTER
+        UserModel porter = new UserModel("porter", "Majster", "Portier", passwordEncoder.encode("porter"), UserRole.PORTER, null, "usos.fibi@gmail.com");
+        users.add(porter);
     }
 
 
