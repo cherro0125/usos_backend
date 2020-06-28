@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class KeyRequestDto {
-    private Long userId;
+public class ReturnKeysRequestDto {
     private List<String> roomNumbers;
 }

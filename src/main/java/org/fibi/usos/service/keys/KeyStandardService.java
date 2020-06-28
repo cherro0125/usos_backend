@@ -57,10 +57,49 @@ public class KeyStandardService implements KeyService {
 
     @Override
     @Transactional
-    public Optional<Collection<KeyModel>> takeKeys(Long userWhichTookKeys, List<String> roomNumbers) {
-        Optional<UserModel> user = userRepository.findById(userWhichTookKeys);
+    public Optional<Collection<KeyModel>> giveKeys(Long userWhichTookKeys, List<String> roomNumbers) throws Exception {
+        Optional<UserModel> optionalUser = userRepository.findById(userWhichTookKeys);
         Optional<Collection<KeyModel>> optionalKeyModels = keyRepository.findByRoomNumberIn(roomNumbers);
-        user.ifPresent(userModel -> optionalKeyModels.ifPresent(keyModels -> keyModels.forEach(keyModel -> keyModel.setOwner(userModel))));
-        return keyRepository.findByOwner(user.get());
+
+        if (optionalUser.isPresent() && optionalKeyModels.isPresent()) {
+            UserModel user = optionalUser.get();
+            Collection<KeyModel> keyModels = optionalKeyModels.get();
+
+            for (KeyModel keyModel : keyModels) {
+                if (keyModel.getOwner() == null) {
+                    keyModel.setOwner(user);
+                } else {
+                    throw new Exception("Key for room " + keyModel.getRoomNumber() + " was already taken!");
+                }
+            }
+        }
+
+        if (optionalUser.isPresent()) {
+            return keyRepository.findByOwner(optionalUser.get());
+        } else {
+            return Optional.empty();
+        }
     }
+
+    @Override
+    @Transactional
+    public Optional<Collection<KeyModel>> returnKeys(List<String> roomNumbers) throws Exception {
+        Optional<Collection<KeyModel>> optionalKeyModels = keyRepository.findByRoomNumberIn(roomNumbers);
+
+        if (optionalKeyModels.isPresent()) {
+            Collection<KeyModel> keyModels = optionalKeyModels.get();
+
+            for (KeyModel keyModel : keyModels) {
+                if (keyModel.getOwner() != null) {
+                    keyModel.setOwner(null);
+                } else {
+                    throw new Exception("Key for room " + keyModel.getRoomNumber() + " wasn't taken!");
+                }
+            }
+        }
+
+        return getAllAvailableKeys();
+    }
+
+
 }

@@ -1,8 +1,9 @@
 package org.fibi.usos.controller.keys;
 
 import org.fibi.usos.annotation.RequireRole;
-import org.fibi.usos.dto.keys.KeyRequestDto;
+import org.fibi.usos.dto.keys.GiveKeysRequestDto;
 import org.fibi.usos.dto.keys.KeyResponseDto;
+import org.fibi.usos.dto.keys.ReturnKeysRequestDto;
 import org.fibi.usos.model.keys.KeyModel;
 import org.fibi.usos.model.user.UserRole;
 import org.fibi.usos.service.keys.KeyService;
@@ -54,9 +55,18 @@ public class KeysController {
 
     @RequireRole({UserRole.PORTER})
     @PostMapping(value = "/giveKeys", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<KeyResponseDto>> giveKeys(@RequestBody KeyRequestDto dto) {
+    public ResponseEntity<List<KeyResponseDto>> giveKeys(@RequestBody GiveKeysRequestDto dto) throws Exception {
         List<KeyResponseDto> keys = new ArrayList<>();
-        Optional<Collection<KeyModel>> models = keyService.takeKeys(dto.getUserId(), dto.getRoomNumbers());
+        Optional<Collection<KeyModel>> models = keyService.giveKeys(dto.getUserId(), dto.getRoomNumbers());
+        models.ifPresent(keyModels -> keyModels.forEach(keyModel -> keys.add(keyModel.mapToResponseDto())));
+        return ResponseEntity.ok(keys);
+    }
+
+    @RequireRole({UserRole.PORTER})
+    @PostMapping(value = "/returnKeys", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<KeyResponseDto>> returnKeys(@RequestBody ReturnKeysRequestDto dto) throws Exception {
+        List<KeyResponseDto> keys = new ArrayList<>();
+        Optional<Collection<KeyModel>> models = keyService.returnKeys(dto.getRoomNumbers());
         models.ifPresent(keyModels -> keyModels.forEach(keyModel -> keys.add(keyModel.mapToResponseDto())));
         return ResponseEntity.ok(keys);
     }
