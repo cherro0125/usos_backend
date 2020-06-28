@@ -26,7 +26,7 @@ public class UserController {
 
 
 
-    @RequireRole({UserRole.DEAN,UserRole.RECTOR})
+    @RequireRole({UserRole.DEAN,UserRole.RECTOR,UserRole.PORTER})
     @GetMapping("/all")
     public ResponseEntity<Collection<UserDto>> getAllUsers() {
         List<UserDto> res = new LinkedList<>();
