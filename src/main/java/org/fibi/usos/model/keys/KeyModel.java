@@ -29,7 +29,7 @@ public class KeyModel extends BaseIdentityModel {
     public KeyResponseDto mapToResponseDto() {
         KeyResponseDto keyResponseDto = new KeyResponseDto();
         keyResponseDto.setRoomNumber(getRoomNumber());
-        keyResponseDto.setOwner(getOwner().mapToDto());
+        keyResponseDto.setOwner(getOwner() != null ? getOwner().mapToDto() : null);
         return keyResponseDto;
     }
 }
