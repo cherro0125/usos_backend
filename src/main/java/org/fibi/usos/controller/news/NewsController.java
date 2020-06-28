@@ -41,7 +41,7 @@ public class NewsController {
         return ResponseEntity.ok(res);
     }
 
-    @RequireRole({UserRole.LECTURER,UserRole.DEAN,UserRole.RECTOR,UserRole.STUDENT})
+    @RequireRole({UserRole.LECTURER,UserRole.DEAN,UserRole.RECTOR,UserRole.STUDENT,UserRole.PORTER})
     @GetMapping("/all")
     public ResponseEntity<List<NewsResponseDto>> getAll() {
         List<NewsResponseDto> res = new LinkedList<>();
@@ -50,7 +50,7 @@ public class NewsController {
         return ResponseEntity.ok(res);
     }
 
-    @RequireRole({UserRole.LECTURER,UserRole.DEAN,UserRole.RECTOR,UserRole.STUDENT})
+    @RequireRole({UserRole.LECTURER,UserRole.DEAN,UserRole.RECTOR,UserRole.STUDENT,UserRole.PORTER})
     @GetMapping("/{id}")
     public ResponseEntity<NewsResponseDto> getById(@PathVariable(name = "id")Long id){
         AtomicReference<NewsResponseDto> res = new AtomicReference<>(new NewsResponseDto());
@@ -58,7 +58,7 @@ public class NewsController {
         return ResponseEntity.ok(res.get());
     }
 
-    @RequireRole({UserRole.LECTURER,UserRole.DEAN,UserRole.RECTOR,UserRole.STUDENT})
+    @RequireRole({UserRole.LECTURER,UserRole.DEAN,UserRole.RECTOR,UserRole.STUDENT,UserRole.PORTER})
     @GetMapping("/user/{id}")
     public ResponseEntity<List<NewsResponseDto>> getByCreatorId(@PathVariable(name = "id")Long id){
         List<NewsResponseDto> res = new ArrayList<>();
