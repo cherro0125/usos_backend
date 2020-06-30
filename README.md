@@ -47,7 +47,13 @@ Role
     * Zmiana istniejących ocen
     * Usunięcie istniejących ocen
     * Tworzenie syllabusa do przedmiotu
-
+* Portier
+    * Wyświetlenie ogłoszeń
+    * Wyświetlenie wszystkich kluczy do sal
+    * Wyświetlenie kluczy dostępnych na portierni do wydania
+    * Wydanie wybranych kluczy dla wybranego użytkownika
+    * Wyświetlenie kluczy wydanych, możliwych do zwrócenia
+    * Zwrócenie na portiernię wybranych kluczy wydanych użytkownikom
 
 
 
